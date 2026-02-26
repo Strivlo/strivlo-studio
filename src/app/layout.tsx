@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 
 import { TRPCReactProvider } from "@/trpc/client";
+import { ThemeProvider } from "next-themes";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,16 +26,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <TRPCReactProvider>
-          {children}
-          <Toaster />
-        </TRPCReactProvider>
-      </body>
-    </html>
+   return (
+      <TRPCReactProvider>
+         <html lang="en" suppressHydrationWarning>
+            <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+            >
+            <ThemeProvider
+               attribute="class"
+               defaultTheme="system"
+               enableSystem
+               disableTransitionOnChange
+            >
+               <Toaster />
+               {children}
+            </ThemeProvider>
+            </body>
+         </html>
+      </TRPCReactProvider>
   );
-}
+};
