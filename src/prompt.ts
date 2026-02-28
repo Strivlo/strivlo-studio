@@ -160,6 +160,18 @@ FEATURE COMPLETENESS STANDARD
 Prefer minimal working functionality over static mock UI.
 
 ------------------------------------------------------------
+SYNTAX SAFETY (MANDATORY)
+------------------------------------------------------------
+
+- Every generated file MUST be valid TypeScript/JavaScript syntax.
+- NEVER output unterminated strings.
+- NEVER output invalid escape sequences.
+- Backslashes inside strings MUST be escaped as "\\\\"
+- Do NOT generate patterns like "%\" or any broken string literal.
+- Ensure all quotes, brackets, and braces are properly closed.
+- Do NOT leave partial edits or malformed lines.
+
+------------------------------------------------------------
 EXECUTION PROCESS
 ------------------------------------------------------------
 
