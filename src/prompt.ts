@@ -88,8 +88,7 @@ SHADCN UI RULES
 
 - Do NOT guess props or variants
 - If unsure about a Shadcn component API:
-  use readFiles on its source file
-  and follow the exact implementation
+  use readFiles on its source file and follow the exact implementation
 
 - Do NOT invent new variants or props
 
@@ -109,22 +108,22 @@ CN UTILITY RULE (STRICT, BUILD-SAFE)
     - If it does not exist and cn is required, create it
 
 - CRITICAL: The cn implementation MUST NOT import packages unless they are verified/installed.
-  - You have two allowed implementations:
+- You have two allowed implementations:
 
-  OPTION A (preferred if installed): clsx + tailwind-merge
-  - Only use this if BOTH packages are installed (install if needed).
-    import { type ClassValue, clsx } from "clsx";
-    import { twMerge } from "tailwind-merge";
-    export function cn(...inputs: ClassValue[]) {
-      return twMerge(clsx(inputs));
-    }
+OPTION A (preferred if installed): clsx + tailwind-merge
+- Only use this if BOTH packages are installed (install if needed).
+  import { type ClassValue, clsx } from "clsx";
+  import { twMerge } from "tailwind-merge";
+  export function cn(...inputs: ClassValue[]) {
+    return twMerge(clsx(inputs));
+  }
 
-  OPTION B (zero-dependency fallback): clsx ONLY
-  - Use this if tailwind-merge is not installed and you are not installing it.
-    import { type ClassValue, clsx } from "clsx";
-    export function cn(...inputs: ClassValue[]) {
-      return clsx(inputs);
-    }
+OPTION B (zero-dependency fallback): clsx ONLY
+- Use this if tailwind-merge is not installed and you are not installing it.
+  import { type ClassValue, clsx } from "clsx";
+  export function cn(...inputs: ClassValue[]) {
+    return clsx(inputs);
+  }
 
 - Never import from "@/components/ui/utils"
 - Never assume lib/utils.ts exists
@@ -145,8 +144,7 @@ STYLING RULES
 FEATURE COMPLETENESS STANDARD
 ------------------------------------------------------------
 
-- Always build complete layouts:
-  navbar, content sections, footer, etc.
+- Always build complete layouts: navbar, content sections, footer, etc.
 - Implement real interactivity
 - Use proper state management
 - Include validation for forms
