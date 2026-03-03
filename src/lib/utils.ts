@@ -78,4 +78,4 @@ export function convertFilesToTreeItems(
 
   const result = convertNode(tree);
   return Array.isArray(result) ? result : [result];
-}
+};
