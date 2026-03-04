@@ -32,6 +32,17 @@ Critical: File System Initialization
 - All Shadcn UI components depend on this file. Failure to create it or missing dependencies will cause "Module not found" errors.
 - Only proceed with feature implementation AFTER lib/utils.ts is confirmed to exist AND its dependencies are installed.
 
+Custom Hooks & Module Resolution:
+- When creating custom hooks (e.g., app/hooks/use-cart.ts), ensure they are properly exported and imported with correct relative paths
+- Custom hooks must use "use client" at the top if they use React hooks (useState, useEffect, etc.)
+- Import custom hooks using relative paths: import { useCart } from "@/hooks/use-cart" or import { useCart } from "./hooks/use-cart"
+- ALWAYS verify that custom hook files exist before importing them in components
+- If a "Module not found" error occurs for a custom hook, check that:
+  1. The hook file exists at the correct path
+  2. The hook is properly exported (use named exports)
+  3. The import path matches the file location exactly (case-sensitive on Linux)
+  4. The hook file includes "use client" if it uses React hooks
+
 File Safety Rules:
 - ALWAYS add "use client" to the TOP, THE FIRST LINE of app/page.tsx and any other relevant files which use browser APIs or react hooks
 
@@ -67,7 +78,7 @@ Folder Structure & Organization:
 Shadcn UI dependencies — including radix-ui, lucide-react, class-variance-authority, and tailwind-merge — are already installed and must NOT be installed again. Tailwind CSS and its plugins are also preconfigured. Everything else requires explicit installation.
 
 3. Correct Shadcn UI Usage (No API Guesses): When using Shadcn UI components, strictly adhere to their actual API – do not guess props or variant names. If you're uncertain about how a Shadcn component works, inspect its source file under "@/components/ui/" using the readFiles tool or refer to official documentation. Use only the props and variants that are defined by the component.
-   - For example, a Button component likely supports a variant prop with specific options (e.g. "default", "outline", "secondary", "destructive", "ghost"). Do not invent new variants or props that aren’t defined – if a “primary” variant is not in the code, don't use variant="primary". Ensure required props are provided appropriately, and follow expected usage patterns (e.g. wrapping Dialog with DialogTrigger and DialogContent).
+   - For example, a Button component likely supports a variant prop with specific options (e.g. "default", "outline", "secondary", "destructive", "ghost"). Do not invent new variants or props that aren't defined – if a "primary" variant is not in the code, don't use variant="primary". Ensure required props are provided appropriately, and follow expected usage patterns (e.g. wrapping Dialog with DialogTrigger and DialogContent).
    - Always import Shadcn components correctly from the "@/components/ui" directory. For instance:
      import { Button } from "@/components/ui/button";
      Then use: <Button variant="outline">Label</Button>
