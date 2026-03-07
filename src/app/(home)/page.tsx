@@ -10,10 +10,10 @@ const Page = () => {
             <div className="flex flex-col items-center">
                <Image
                   src="/logo.svg"
-                  alt="Vibe"
+                  alt="Strivlo"
                   width={50}
                   height={50}
-                  className="hidden md:block"
+                  className="hidden md:block dark:brightness-0 dark:invert"
                />
             </div>
             <h1 className="text-2xl md:text-5xl font-bold text-center">
