@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { Toaster } from "sonner";
-
-import { TRPCReactProvider } from "@/trpc/client";
 import { ThemeProvider } from "next-themes";
+import { ClerkProvider } from "@clerk/nextjs";
+import { Geist, Geist_Mono } from "next/font/google";
+
+import { Toaster } from "@/components/ui/sonner";
+import { TRPCReactProvider } from "@/trpc/client";
+
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,23 +28,25 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-   return (
+  return (
+    <ClerkProvider>
       <TRPCReactProvider>
-         <html lang="en" suppressHydrationWarning>
-            <body
+        <html lang="en" suppressHydrationWarning>
+          <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-            >
+          >
             <ThemeProvider
-               attribute="class"
-               defaultTheme="system"
-               enableSystem
-               disableTransitionOnChange
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
             >
-               <Toaster />
-               {children}
+              <Toaster />
+              {children}
             </ThemeProvider>
-            </body>
-         </html>
+          </body>
+        </html>
       </TRPCReactProvider>
+    </ClerkProvider>
   );
 };
