@@ -130,7 +130,7 @@ The application is deployed on **Vercel** and connected to a PostgreSQL database
 
 Live version:
 
-[https://strivlo.vercel.app/](https://strivlo.vercel.app/)
+[https://strivlostudio.vercel.app/](https://strivlostudio.vercel.app/)
 
 
 ## About Strivlo
